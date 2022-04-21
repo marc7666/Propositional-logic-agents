@@ -221,7 +221,7 @@ public class EnvelopeFinder  {
             return moveTo(nextPosition.x, nextPosition.y);
         } else {
             System.out.println("NO MORE steps to perform at agent!");
-            return (new AMessage("NOMESSAGE","",""));
+            return (new AMessage("NOMESSAGE","","", ""));
         }
     }
 
@@ -374,7 +374,7 @@ public class EnvelopeFinder  {
     public ISolver buildGamma() throws UnsupportedEncodingException,
             FileNotFoundException, IOException, ContradictionException
     {
-        int totalNumVariables;
+        int totalNumVariables = 0;
 
         // You must set this variable to the total number of boolean variables
         // in your formula Gamma

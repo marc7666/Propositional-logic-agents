@@ -61,7 +61,7 @@ public class EnvelopeWorldEnv {
            {
              
              
-             ans = new AMessage("movedto",msg.getComp(1),msg.getComp(2)  );
+             ans = new AMessage("movedto",msg.getComp(1),msg.getComp(2), ""  );
            }
            else
              ans = new AMessage("notmovedto",msg.getComp(1),msg.getComp(2), "" );
