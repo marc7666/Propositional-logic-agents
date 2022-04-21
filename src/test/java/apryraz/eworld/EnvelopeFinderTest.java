@@ -1,3 +1,5 @@
+package apryraz.eworld;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -75,7 +77,7 @@ public class EnvelopeFinderTest {
 *
 *  @return returns an ArrayList of TFState with the resulting list of states
 **/
-  ArrayList<TFState> loadListOfTargetStates( int wDim, int numStates, String statesFile ) {
+  ArrayList<EFState> loadListOfTargetStates( int wDim, int numStates, String statesFile ) {
 
      ArrayList<EFState> listOfStates = new ArrayList<EFState>(numStates);
 
@@ -121,9 +123,9 @@ public class EnvelopeFinderTest {
       // You should make TreasureFinder and TreasureWorldEnv objects to  test.
       // Then load sequence of target states, load sequence of steps into the eAgent
       // and then test the sequence calling testMakeSimpleStep once for each step.
-     EnvelopeFinder eAgent  ;
+     EnvelopeFinder eAgent = null;
      // load information about the World into the EnvAgent
-     EnvelopeWorldEnv envAgent  ;
+     EnvelopeWorldEnv envAgent = null;
      // Load list of states
      ArrayList<EFState> seqOfStates ;
 
