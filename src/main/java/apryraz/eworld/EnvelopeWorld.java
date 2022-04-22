@@ -30,19 +30,17 @@ public class EnvelopeWorld {
 public static void runStepsSequence( int wDim, 
                                     int numSteps, String fileSteps, String fileEnvelopes ) throws
                                IOException,  ContradictionException, TimeoutException {
-  // Make instances of TreasureFinder agent and environment object classes
-   EnvelopeFinder EAgent  ;
-   EnvelopeWorldEnv EnvAgent  ;  
-
-  
-
-   // save environment object into EAgent 
- 
-
-   // load list of steps into the Finder Agent
-    
-    
-   // Execute sequence of steps with the Agent
+    // Make instances of TreasureFinder agent and environment object classes
+    EnvelopeFinder EAgent = new EnvelopeFinder(wDim);
+    EnvelopeWorldEnv EnvAgent = new EnvelopeWorldEnv(wDim, fileEnvelopes);
+    // save environment object into EAgent
+    EAgent.setEnvironment(EnvAgent);
+    // load list of steps into the Finder Agent
+    EAgent.loadListOfSteps(numSteps, fileSteps);
+    // Execute sequence of steps with the Agent
+    while (EAgent.hasMovements()) {
+        EAgent.runNextStep();
+    }
 
 }
 
@@ -55,10 +53,11 @@ public static void runStepsSequence( int wDim,
 **/
 public static void main ( String[] args) throws ParseFormatException,
         IOException,  ContradictionException, TimeoutException {
-
-  // Here I run a concrete example, but you should read parameters from
-  // the command line, as decribed above.
-  runStepsSequence(  4, 5, "tests/steps1.txt", "tests/envelopes1.txt"  );
+    int wDim = Integer.parseInt(args[0]);
+    int numSteps = Integer.parseInt(args[1]);
+    String fileSteps = args[2];
+    String envelopesFile = args[3];
+    runStepsSequence(wDim, numSteps, fileSteps, envelopesFile);
 }
 
 }
