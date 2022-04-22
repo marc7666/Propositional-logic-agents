@@ -156,4 +156,22 @@ public class EnvelopeFinderTest {
         testMakeSeqOfSteps(5, 5, "tests/steps1.txt", "tests/states1.txt", "tests/envelopes1.txt");
     }
 
+    @Test public void TWorldTest2()   throws
+            IOException,  ContradictionException, TimeoutException {
+        // Test 5x5 world,  7 steps , envolepes at  3,2 3,4
+        testMakeSeqOfSteps(5, 7, "tests/steps2.txt", "tests/states2.txt", "tests/envelopes2.txt"  );
+    }
+
+    @Test public void TWorldTest3()   throws
+            IOException,  ContradictionException, TimeoutException {
+        // Test 7x7 world,  6 steps,  envelopes at  3,2 4,4 2,6
+        testMakeSeqOfSteps(7, 6, "tests/steps3.txt", "tests/states3.txt", "tests/envelopes3.txt"  );
+    }
+
+    @Test public void TWorldTest4()   throws
+            IOException,  ContradictionException, TimeoutException {
+        // Test 7x7 world,  12 steps , envelopes at  6,2 4,4 2,6
+        testMakeSeqOfSteps(7, 12, "tests/steps4.txt", "tests/states4.txt", "tests/envelopes4.txt"  );
+    }
+
 }
