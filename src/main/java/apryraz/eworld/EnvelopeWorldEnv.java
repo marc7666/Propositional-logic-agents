@@ -15,90 +15,89 @@ import static java.lang.System.exit;
 
 
 public class EnvelopeWorldEnv {
-/**
-   world dimension
+    /**
+     * world dimension
+     **/
+    int WorldDim;
+    int worldDims;
 
-**/
-  int  WorldDim;
-  int worldDims;
+    PositionsUtilities positionsUtilities;
+    List<Position> envelopePositions;
 
-  PositionsUtilities positionsUtilities;
-  List<Position> envelopePositions;
-/**
-*  Class constructor
-*
-* @param dim dimension of the world
-* @param envelopeFile File with list of envelopes locations
-**/
-  public EnvelopeWorldEnv( int dim, String envelopeFile ) {
+    /**
+     * Class constructor
+     *
+     * @param dim          dimension of the world
+     * @param envelopeFile File with list of envelopes locations
+     **/
+    public EnvelopeWorldEnv(int dim, String envelopeFile) {
 
-      WorldDim = dim;
-      worldDims = dim * dim;
-      loadEnvelopeLocations(envelopeFile);
-      positionsUtilities = new PositionsUtilities(worldDims);
-  }
+        WorldDim = dim;
+        worldDims = dim * dim;
+        loadEnvelopeLocations(envelopeFile);
+        positionsUtilities = new PositionsUtilities(worldDims);
+    }
 
-/**
-*   Load the list of pirates locations
-*
-*    @param: name of the file that should contain a
-*            set of envelope locations in a single line.
-**/
-  public void loadEnvelopeLocations( String envelopeFile ) {
-      String[] envelopesList;
-      String envelopes = "";
-      try {
-          BufferedReader br = new BufferedReader(new FileReader(envelopeFile));
-          System.out.println("ENVELOPE FILE OPENED ...");
-          envelopes = br.readLine();
-          br.close();
-      } catch (FileNotFoundException ex) {
-          System.out.println("MSG.   => Steps file not found");
-          exit(1);
-      } catch (IOException ex) {
-          Logger.getLogger(EnvelopeFinder.class.getName()).log(Level.SEVERE, null, ex);
-          exit(2);
-      }
-      envelopesList = envelopes.split(" ");
-      envelopePositions = new ArrayList<Position>(envelopesList.length);
-      for (int i = 0 ; i < envelopesList.length ; i++ ) {
-          String[] coords = envelopesList[i].split(",");
-          envelopePositions.add(new Position(Integer.parseInt(coords[0]), Integer.parseInt(coords[1])));
-      }
+    /**
+     * Load the list of pirates locations
+     *
+     * @param: name of the file that should contain a
+     * set of envelope locations in a single line.
+     **/
+    public void loadEnvelopeLocations(String envelopeFile) {
+        String[] envelopesList;
+        String envelopes = "";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(envelopeFile));
+            System.out.println("ENVELOPE FILE OPENED ...");
+            envelopes = br.readLine();
+            br.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("MSG.   => Steps file not found");
+            exit(1);
+        } catch (IOException ex) {
+            Logger.getLogger(EnvelopeFinder.class.getName()).log(Level.SEVERE, null, ex);
+            exit(2);
+        }
+        envelopesList = envelopes.split(" ");
+        envelopePositions = new ArrayList<Position>(envelopesList.length);
+        for (int i = 0; i < envelopesList.length; i++) {
+            String[] coords = envelopesList[i].split(",");
+            envelopePositions.add(new Position(Integer.parseInt(coords[0]), Integer.parseInt(coords[1])));
+        }
 
-  }
+    }
 
 
-/**
-* Process a message received by the EFinder agent,
-* by returning an appropriate answer
-* It should answer to moveto and detectsat messages
-*
-* @param   msg message sent by the Agent
-*
-* @return  a msg with the answer to return to the agent
-**/
-   public AMessage acceptMessage( AMessage msg ) {
-       AMessage ans = new AMessage("voidmsg", "", "", "" );
-       msg.showMessage();
-       if (msg.getComp(0).equals("moveto")) {
-           int nx = Integer.parseInt( msg.getComp(1) );
-           int ny = Integer.parseInt( msg.getComp(2) );
-           if (positionsUtilities.withinLimits(nx,ny)) {
-               ans = new AMessage("movedto", msg.getComp(1), msg.getComp(2), "");
-           } else {
-               ans = new AMessage("notmovedto", msg.getComp(1), msg.getComp(2), "");
-           }
-       } else if(msg.getComp(0).equals("detectsat")) {
-           int nx = Integer.parseInt( msg.getComp(1));
-           int ny = Integer.parseInt( msg.getComp(2));
-           // Gets sensor readings
-           String sensorsReadings = getSensorReadings(nx, ny);
-           ans = new AMessage("detectsat", msg.getComp(1), msg.getComp(2), sensorsReadings);
-       }
-       return ans;
+    /**
+     * Process a message received by the EFinder agent,
+     * by returning an appropriate answer
+     * It should answer to moveto and detectsat messages
+     *
+     * @param msg message sent by the Agent
+     * @return a msg with the answer to return to the agent
+     **/
+    public AMessage acceptMessage(AMessage msg) {
+        AMessage ans = new AMessage("voidmsg", "", "", "");
+        msg.showMessage();
+        if (msg.getComp(0).equals("moveto")) {
+            int nx = Integer.parseInt(msg.getComp(1));
+            int ny = Integer.parseInt(msg.getComp(2));
+            if (positionsUtilities.withinLimits(nx, ny)) {
+                ans = new AMessage("movedto", msg.getComp(1), msg.getComp(2), "");
+            } else {
+                ans = new AMessage("notmovedto", msg.getComp(1), msg.getComp(2), "");
+            }
+        } else if (msg.getComp(0).equals("detectsat")) {
+            int nx = Integer.parseInt(msg.getComp(1));
+            int ny = Integer.parseInt(msg.getComp(2));
+            // Gets sensor readings
+            String sensorsReadings = getSensorReadings(nx, ny);
+            ans = new AMessage("detectsat", msg.getComp(1), msg.getComp(2), sensorsReadings);
+        }
+        return ans;
 
-   }
+    }
 
     /**
      * Get the readings from the sensor at position (x, y).
@@ -111,10 +110,10 @@ public class EnvelopeWorldEnv {
      * @return sensor values
      */
     public String getSensorReadings(int x, int y) {
-        int linealPosition = Position.toLinealPosition(x,y, worldDims);
+        int linealPosition = Position.toLinealPosition(x, y, worldDims);
         String sensorsReadings = "";
         // For each treasure check if it is detected by the sensor in position x, y
-        for(Position position: envelopePositions) {
+        for (Position position : envelopePositions) {
             int envelopePosition = position.toLinealPosition(worldDims);
             // check if the sensor with value 1 detects any treasure
             if (positionsUtilities.positionsOfValue1(linealPosition).contains(envelopePosition))
@@ -131,18 +130,17 @@ public class EnvelopeWorldEnv {
     }
 
 
- /**
-  * Check if position x,y is within the limits of the
-  * WorldDim x WorldDim   world
-  *
-  * @param x  x coordinate of agent position
-  * @param y  y coordinate of agent position
-  *
-  * @return true if (x,y) is within the limits of the world
-  **/
-   public boolean withinLimits( int x, int y ) {
+    /**
+     * Check if position x,y is within the limits of the
+     * WorldDim x WorldDim   world
+     *
+     * @param x x coordinate of agent position
+     * @param y y coordinate of agent position
+     * @return true if (x,y) is within the limits of the world
+     **/
+    public boolean withinLimits(int x, int y) {
 
-    return ( x >= 1 && x <= WorldDim && y >= 1 && y <= WorldDim);
-  }
+        return (x >= 1 && x <= WorldDim && y >= 1 && y <= WorldDim);
+    }
 
 }

@@ -29,8 +29,8 @@ public class PositionsUtilities {
      * @param y cord y of position
      * @return true if the pair (x,y) is within the limits, false in other case
      */
-    public boolean withinLimits( int x, int y ) {
-        return ( x >= 1 && x <= worldDim && y >= 1 && y <= worldDim);
+    public boolean withinLimits(int x, int y) {
+        return (x >= 1 && x <= worldDim && y >= 1 && y <= worldDim);
     }
 
     /**
@@ -40,19 +40,19 @@ public class PositionsUtilities {
      * @return list of possible positions
      */
     public List<Integer> positionsOfValue1(int linealPosition) {
-        Position position =  Position.linealToCoord(linealPosition, worldDim);
+        Position position = Position.linealToCoord(linealPosition, worldDim);
         ArrayList<Integer> posiblePositions = new ArrayList<>();
 
-        if(withinLimits(position.x + 1, position.y))
+        if (withinLimits(position.x + 1, position.y))
             posiblePositions.add(Position.toLinealPosition(position.x + 1, position.y, worldDim));
 
-        if(withinLimits(position.x - 1, position.y))
+        if (withinLimits(position.x - 1, position.y))
             posiblePositions.add(Position.toLinealPosition(position.x - 1, position.y, worldDim));
 
-        if(withinLimits(position.x, position.y - 1))
+        if (withinLimits(position.x, position.y - 1))
             posiblePositions.add(Position.toLinealPosition(position.x, position.y - 1, worldDim));
 
-        if(withinLimits(position.x, position.y + 1))
+        if (withinLimits(position.x, position.y + 1))
             posiblePositions.add(Position.toLinealPosition(position.x, position.y + 1, worldDim));
 
         return posiblePositions;
@@ -65,19 +65,19 @@ public class PositionsUtilities {
      * @return list of possible positions
      */
     public List<Integer> positionsOfValue2(int linealPosition) {
-        Position position =  Position.linealToCoord(linealPosition, worldDim);
+        Position position = Position.linealToCoord(linealPosition, worldDim);
         ArrayList<Integer> posiblePositions = new ArrayList<>();
 
-        if(withinLimits(position.x - 1, position.y - 1))
+        if (withinLimits(position.x - 1, position.y - 1))
             posiblePositions.add(Position.toLinealPosition(position.x - 1, position.y - 1, worldDim));
 
-        if(withinLimits(position.x + 1, position.y - 1))
+        if (withinLimits(position.x + 1, position.y - 1))
             posiblePositions.add(Position.toLinealPosition(position.x + 1, position.y - 1, worldDim));
 
-        if(withinLimits(position.x - 1, position.y + 1))
+        if (withinLimits(position.x - 1, position.y + 1))
             posiblePositions.add(Position.toLinealPosition(position.x - 1, position.y + 1, worldDim));
 
-        if(withinLimits(position.x + 1, position.y + 1))
+        if (withinLimits(position.x + 1, position.y + 1))
             posiblePositions.add(Position.toLinealPosition(position.x + 1, position.y + 1, worldDim));
 
         return posiblePositions;
@@ -91,9 +91,9 @@ public class PositionsUtilities {
      * @return list of possible positions
      */
     public List<Integer> positionsOfValue3(int linealPosition) {
-        Position position =  Position.linealToCoord(linealPosition, worldDim);
+        Position position = Position.linealToCoord(linealPosition, worldDim);
         ArrayList<Integer> posiblePositions = new ArrayList<>();
-        if(withinLimits(position.x, position.y))
+        if (withinLimits(position.x, position.y))
             posiblePositions.add(linealPosition);
         return posiblePositions;
     }
