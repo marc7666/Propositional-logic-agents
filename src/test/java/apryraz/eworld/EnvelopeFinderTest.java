@@ -23,6 +23,10 @@ import apryraz.eworld.*;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.*;
+/**
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
 
 /**
  * Class for testing the TreasureFinder agent
@@ -37,7 +41,10 @@ public class EnvelopeFinderTest {
      * @param eAgent      EnvelopeFinder agent
      * @param targetState the state that should be equal to the resulting state of
      *                    the agent after performing the next step
-     **/
+     *
+     * @throws IOException
+     * @throws ContradictionException
+     * @throws TimeoutException*/
     public void testMakeSimpleStep(EnvelopeFinder eAgent,
                                    EFState targetState) throws
             IOException, ContradictionException, TimeoutException {
