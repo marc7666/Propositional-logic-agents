@@ -17,6 +17,10 @@ import org.sat4j.core.VecInt;
 import org.sat4j.specs.*;
 import org.sat4j.minisat.*;
 
+/**
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
 
 
 /**

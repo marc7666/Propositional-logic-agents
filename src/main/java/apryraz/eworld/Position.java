@@ -1,5 +1,10 @@
 package apryraz.eworld;
 
+/**
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
+
 public class Position {
     /**
      *

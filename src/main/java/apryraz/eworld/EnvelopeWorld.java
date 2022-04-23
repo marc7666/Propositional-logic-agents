@@ -7,6 +7,10 @@ import org.sat4j.specs.*;
 import org.sat4j.minisat.*;
 import org.sat4j.reader.*;
 
+/**
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
 
 /**
  * The class for the main program of the Barcenas World

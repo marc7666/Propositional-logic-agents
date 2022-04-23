@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author dandmarbasera on 22/4/22.
- * @project Propositional-logic-agents
- */
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
+
 public class PositionsUtilities {
     /**
      * World Dimension

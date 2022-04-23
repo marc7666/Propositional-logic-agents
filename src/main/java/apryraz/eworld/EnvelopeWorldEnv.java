@@ -1,5 +1,3 @@
-
-
 package apryraz.eworld;
 
 import java.io.BufferedReader;
@@ -13,6 +11,10 @@ import java.util.logging.Logger;
 
 import static java.lang.System.exit;
 
+/**
+ * @author Dand Marbà Sera
+ * @author Marc Cervera Rosell
+ **/
 
 public class EnvelopeWorldEnv {
     /**
