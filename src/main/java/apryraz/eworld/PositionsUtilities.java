@@ -85,7 +85,7 @@ public class PositionsUtilities {
 
 
     /**
-     * This function get possible positions of sensor value 5 from a position
+     * This function get possible positions of sensor value 3 from a position
      *
      * @param linealPosition position origin of sensor lecture
      * @return list of possible positions
