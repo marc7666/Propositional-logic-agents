@@ -9,20 +9,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static java.lang.System.exit;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.sat4j.core.Vec;
 import org.sat4j.core.VecInt;
 
 import org.sat4j.specs.*;
 import org.sat4j.minisat.*;
-import org.sat4j.reader.*;
+
 
 
 /**
@@ -31,8 +25,6 @@ import org.sat4j.reader.*;
  * and then the outcome from the smell sensor, to try to locate
  * the position of Envelope
  *
- * @author Alejandro Clavera Poza
- * @author Moises Bernaus Lechosa
  */
 public class EnvelopeFinder {
     /**
